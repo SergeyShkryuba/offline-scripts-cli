@@ -4,16 +4,32 @@ Eleven small CLI tools for common local tasks when an LLM or network connection 
 
 ## Install
 
+### Option A: install.sh (recommended for offline/legacy systems)
+
 ```bash
+git clone https://github.com/SergeyShkryuba/offline-scripts-cli.git
+cd offline-scripts-cli
 ./install.sh
 ```
 
 This installs the package in user mode and adds the user Python bin directory to `PATH` in `~/.zshrc`.
 The shell RC file is auto-detected from your login shell, with `--rc-file` available as an override.
 
-Manual install still works:
+### Option B: pipx (isolated, clean)
 
 ```bash
+brew install pipx && pipx ensurepath
+pipx install git+https://github.com/SergeyShkryuba/offline-scripts-cli.git
+```
+
+`pipx` creates an isolated virtual environment for the tool and manages `PATH` automatically.
+Upgrade later with `pipx upgrade offline-scripts-cli`.
+
+### Option C: pip (editable, manual)
+
+```bash
+git clone https://github.com/SergeyShkryuba/offline-scripts-cli.git
+cd offline-scripts-cli
 python3 -m pip install -e . --user --no-build-isolation
 ```
 
