@@ -1,0 +1,118 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Offline: Generate project overview",
+      "type": "shell",
+      "command": "offline-codebase-map",
+      "args": ["${workspaceFolder}", "--markdown"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Generate OVERVIEW.md with codebase statistics"
+    },
+    {
+      "label": "Offline: Generate tests for current file",
+      "type": "shell",
+      "command": "offline-test-skeleton",
+      "args": [
+        "${file}",
+        "--module",
+        "${fileBasenameNoExtension}",
+        "-o",
+        "${workspaceFolder}/tests/test_${fileBasenameNoExtension}.py"
+      ],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Create pytest skeleton for the active Python file"
+    },
+    {
+      "label": "Offline: JSON to TypeScript",
+      "type": "shell",
+      "command": "offline-json2types",
+      "args": ["${file}", "--lang", "ts", "--name", "${fileBasenameNoExtension}"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Convert JSON file to TypeScript interfaces"
+    },
+    {
+      "label": "Offline: JSON to Python",
+      "type": "shell",
+      "command": "offline-json2types",
+      "args": ["${file}", "--lang", "python", "--name", "${fileBasenameNoExtension}"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Convert JSON file to Python dataclasses"
+    },
+    {
+      "label": "Offline: Add snippet",
+      "type": "shell",
+      "command": "offline-snippets",
+      "args": ["add", "${input:snippetKey}", "${input:snippetContent}", "--tags", "${input:snippetTags}"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Save a reusable snippet to local store"
+    },
+    {
+      "label": "Offline: Git snapshot",
+      "type": "shell",
+      "command": "offline-git-ops",
+      "args": ["snapshot", "--repo", "${workspaceFolder}"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Show changed files and recent commits"
+    },
+    {
+      "label": "Offline: Inventory directory",
+      "type": "shell",
+      "command": "offline-file-ops",
+      "args": ["inventory", "${workspaceFolder}", "--recursive"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "List all files as JSON with sizes and extensions"
+    },
+    {
+      "label": "Offline: Analyze log file",
+      "type": "shell",
+      "command": "offline-logdoctor",
+      "args": ["${file}", "--top", "20"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Group patterns and find top issues in log file"
+    },
+    {
+      "label": "Offline: CSV SQL query",
+      "type": "shell",
+      "command": "offline-csvsql",
+      "args": ["${file}", "${input:csvQuery}"],
+      "problemMatcher": [],
+      "group": "none",
+      "detail": "Run SQL query against the selected CSV file"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "snippetKey",
+      "type": "promptString",
+      "description": "Snippet key (e.g., docker-postgres)",
+      "default": "my-snippet"
+    },
+    {
+      "id": "snippetContent",
+      "type": "promptString",
+      "description": "Snippet content",
+      "default": ""
+    },
+    {
+      "id": "snippetTags",
+      "type": "promptString",
+      "description": "Comma-separated tags",
+      "default": ""
+    },
+    {
+      "id": "csvQuery",
+      "type": "promptString",
+      "description": "SQL query to run",
+      "default": "SELECT * FROM data LIMIT 10"
+    }
+  ]
+}
