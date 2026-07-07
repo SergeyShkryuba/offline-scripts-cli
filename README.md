@@ -1,5 +1,7 @@
 # Offline Scripts
 
+> **Note:** Although my primary focus is Frontend Web Development (JS/TS, React, Vue), I built this Python CLI utility to automate my local offline workflows. It's a collection of tools I use to parse data, manage files, and streamline my development process when I'm away from a network connection.
+
 Eleven small CLI tools for common local tasks when an LLM or network connection is not available.
 
 ## Install
